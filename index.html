@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link href="css/Tetris.css" rel="stylesheet"/>
+
+    <script src="js/jquery-2.2.2.min.js"></script>
+    <script src="js/Tetris.js"></script>
+
+
+    <title>Tetris</title>
+
+    <style>
+        body, html {
+            position: relative;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+        }
+        
+        #playground {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 48vmin;
+            height: 100vmin;
+        }
+    </style>
+
+    <script>
+      $(document).ready(function() {
+          tetris = new Tetris($('#playground'), 24, 50, 150);
+      });
+    </script>
+</head>
+<body>
+    <div id="playground"></div>
+</body>
+</html>
