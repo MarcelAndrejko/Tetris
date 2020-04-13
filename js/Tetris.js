@@ -130,6 +130,37 @@ function Tetris(container, playgroundWidth, playgroundHeight, timeoutValue, onSc
     var handler = null;
     var disable = false;
 
+    $('body').click(function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        if (disable)
+            return;
+        disable = true;
+
+        var dist = (e.pageX/$(this).width())*100;
+
+        var nextCol = currentCol;
+        var nextRow = currentRow;
+        var nextRot = currentRot;
+
+        if (dist <= 30) {
+            nextCol = currentCol-1;
+        } else if (dist >= 70) {
+            nextCol = currentCol+1;
+        } else {
+            nextRot = (currentRot+1)%4;
+        }
+        if (canMove(blockDefs[blockNr][nextRot], nextRow, nextCol)) {
+            eraseObject(blockDefs[blockNr][currentRot], currentRow, currentCol);
+            drawObject(blockDefs[blockNr][nextRot], nextRow, nextCol);
+            currentRow = nextRow;
+            currentCol = nextCol;
+            currentRot = nextRot;
+        }
+
+        disable = false;
+    });
+
     $('body').keypress(function(e) {
         e.stopPropagation();
         e.preventDefault();
