@@ -9,7 +9,9 @@ function Tetris(container, playgroundWidth, playgroundHeight, timeoutValue) {
         for (col=0; col<playgroundWidth; col++) {
             var el = $('<div></div>').css({
                 top:  (row*elHeight)+'%',
-                left:  (col*elWidth)+'%'
+                left:  (col*elWidth)+'%',
+                width: elWidth+'%',
+                height: elHeight+'%'
             });
             playground[row][col] = 0;
             container.append(el);

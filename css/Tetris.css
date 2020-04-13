@@ -1,7 +1,5 @@
 #playground div {
     position: absolute;
-    width: 2vmin;
-    height: 2vmin;
     border: 1px solid #ffffff;
     background: #dddddd;
     box-sizing: border-box;
