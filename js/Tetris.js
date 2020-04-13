@@ -1,5 +1,8 @@
-function Tetris(container, playgroundWidth, playgroundHeight, timeoutValue) {
+function Tetris(container, playgroundWidth, playgroundHeight, timeoutValue, onScore) {
     var playground = [];
+
+    if (onScore == null)
+        onScore = function(aScore) {};
 
     var elWidth = 100/playgroundWidth;
     var elHeight = 100/playgroundHeight;
@@ -116,6 +119,7 @@ function Tetris(container, playgroundWidth, playgroundHeight, timeoutValue) {
     /* begin game */
 
     var score = 0;
+    onScore(score);
     var blockNr = Math.floor(Math.random() * 5);
     var currentRot = Math.floor(Math.random() * 4);
     var currentCol = Math.floor((playgroundWidth - 4)/2);
@@ -179,6 +183,7 @@ function Tetris(container, playgroundWidth, playgroundHeight, timeoutValue) {
         
             score += localScore;
             document.title = 'Tetris '+score;
+            onScore(score);
             redrawPlayground(currentRow+3);
                             
             currentCol = Math.floor((playgroundWidth - 4)/2);
@@ -188,7 +193,7 @@ function Tetris(container, playgroundWidth, playgroundHeight, timeoutValue) {
             if (!canMove(blockDefs[blockNr][currentRot], currentRow, currentCol)) {
                 // end game;
                 clearInterval(handler);
-                alert('Score: '+score);
+                alert('Game over');
                 return;
             } else {
                 drawObject(blockDefs[blockNr][currentRot], currentRow, currentCol);

@@ -21,23 +21,76 @@
             padding: 0;
             background: #ffffff;
         }
-        
-        #playground {
+
+        #tetris {
+            font-family: monospace;
             position: relative;
-            top: 0;
-            left: 0;
             width: 48vh;
             height: 100vh;
+            margin: 0 auto;
+        }
+
+        #playground {
+            position: relative;
+            height: 92vh;
+        }
+
+        #score {
+            height: 4vh;
+            text-align: center;
+            font-size: 2vh;
+            line-height: 4vh;
+            vertical-align: middle;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            background: #ffffff;
+            color: #000000;
+        }
+
+        #keys {
+            height: 4vh;
+            overflow: hidden;
+        }
+
+        #keys div {
+            display: inline;
+            float: left;
+            width: 25%;
+            overflow: hidden;
+            height: 4vh;
+            line-height: 4vh;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 1.5vh;
+            box-sizing: border-box;
+            background: #ffffff;
+            color: #000000;
         }
     </style>
 
     <script>
       $(document).ready(function() {
-          tetris = new Tetris($('#playground'), 24, 50, 150);
+          tetris = new Tetris(
+              $('#playground'),
+              24, 50,
+              150,
+              function(aScore){
+                  $('#score').text('Score: '+aScore);
+              });
       });
     </script>
 </head>
 <body>
-    <div id="playground"></div>
+    <div id="tetris">
+        <div id="score"></div>
+        <div id="playground"></div>
+        <div id="keys">
+            <div><strong><</strong> left</div>
+            <div><strong>A</strong> rotate</div>
+            <div>' ' drop</div>
+            <div>right <strong>></strong></div>
+        </div>
+    </div>
 </body>
 </html>
